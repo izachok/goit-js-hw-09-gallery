@@ -9,7 +9,6 @@ let isModalOpen = false;
 export function addModalListeners() {
   modalCloseBtn.addEventListener('click', closeModal);
   modalRef.querySelector('.lightbox__overlay').addEventListener('click', closeModal);
-  window.addEventListener('keydown', onModalKeydown);
 }
 
 function onModalKeydown(event) {
@@ -51,6 +50,7 @@ export function openModal(src) {
   modalRef.classList.add('is-open');
   isModalOpen = true;
   setModalImgSrc(src);
+  window.addEventListener('keydown', onModalKeydown);
 }
 
 function closeModal() {
@@ -58,4 +58,5 @@ function closeModal() {
   modalRef.classList.remove('is-open');
   isModalOpen = false;
   setModalImgSrc('');
+  window.removeEventListener('keydown', onModalKeydown);
 }
